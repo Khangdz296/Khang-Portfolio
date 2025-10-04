@@ -1,0 +1,293 @@
+/* ===== Base ===== */
+:root {
+  --bg: #f7f7fb;
+  --card: #ffffff;
+  --line: rgba(0, 0, 0, 0.08);
+  --text: #1f2937;
+  --muted: #6b7280;
+  --purple: #8b5cf6; /* tím nhạt */
+  --purple-600: #7c3aed;
+  --surface: #f3f4f6;
+  --radius: 14px;
+  --shadow: 0 6px 18px rgba(17, 12, 46, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol", "Noto Color Emoji";
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.bold {
+  font-weight: 700;
+}
+.muted {
+  color: var(--muted);
+}
+.tiny {
+  font-size: 0.85rem;
+}
+.center {
+  text-align: center;
+}
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.badge {
+  background: #fee2e2;
+  color: #ef4444;
+  padding: 1px 6px;
+  border-radius: 999px;
+}
+
+/* ===== Header ===== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #fff;
+  box-shadow: 0 1px 0 var(--line);
+}
+.header-inner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 20px;
+}
+.nav {
+  margin-left: auto;
+  display: flex;
+  gap: 24px;
+}
+.nav a {
+  color: #4b5563;
+  transition: color 0.18s ease;
+}
+.nav a:hover {
+  color: var(--purple);
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 24px;
+  background: var(--surface);
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+}
+.search input {
+  border: 0;
+  outline: 0;
+  background: transparent;
+  width: 160px;
+  font: inherit;
+  color: inherit;
+}
+.search-ic {
+  color: #6b7280;
+}
+
+/* ===== Layout ===== */
+.layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 32px; /* NEW: nới khoảng giữa 2 cột */
+  padding: 32px 0; /* NEW: nới đệm trên dưới */
+}
+@media (max-width: 980px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* NEW: mỗi cột dùng grid để có gap giữa các section/card */
+.left-col,
+.right-col {
+  display: grid;
+  gap: 18px; /* NEW: khoảng cách giữa các section trong cùng cột */
+}
+
+/* ===== Cards ===== */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px; /* hơi dày hơn tí cho thoáng */
+}
+
+/* (tuỳ chọn) nếu có hai .card liền nhau mà không nằm trong .left-col/.right-col */
+.card + .card {
+  margin-top: 16px;
+} /* NEW: fallback spacing */
+
+.section-h {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 4px 0 18px;
+}
+
+/* Profile block */
+.profile-card {
+  text-align: center;
+  padding: 24px;
+}
+.avatar {
+  width: 128px;
+  height: 128px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ececf3, #dfe0ea);
+  border: 2px dashed #d1d5db;
+}
+
+/* small socials dots (placeholder) */
+.socials {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 14px;
+}
+.dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+/* Side widgets */
+.side-card {
+  padding: 18px;
+}
+.side-box {
+  background: var(--surface);
+  border: 1px dashed var(--line);
+  border-radius: 12px;
+  padding: 12px;
+}
+.side-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.side-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  border: 1px solid var(--line);
+}
+
+.game {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.game-ic {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: var(--purple-600);
+  font-weight: 700;
+  border: 1px solid #e5e7eb;
+}
+.game-ic.big {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+}
+
+/* Right column */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+} /* +2px */
+@media (max-width: 780px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.info-fields p {
+  margin: 8px 0;
+}
+
+/* Discord big card (placeholder) */
+.discord-card {
+  background: #0c0f14;
+  color: #e5e7eb;
+  border-radius: 14px;
+  padding: 14px;
+  border: 1px solid #1f2937;
+}
+.disc-top {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.disc-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #374151;
+}
+.disc-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* Bullets */
+.bullet {
+  padding-left: 18px;
+  line-height: 1.6;
+}
+.bullet li {
+  margin: 6px 0;
+}
+
+/* Footer */
+.footer {
+  padding: 26px 0 40px;
+  text-align: center;
+}
